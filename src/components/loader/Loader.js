@@ -1,9 +1,11 @@
 import React from 'react';
+import './loader.scss';
+import {FadeLoader} from "react-spinners";
 
 export const Loader = () => {
     return (
-        <div>
-            <h1>Loading...</h1>
+        <div className="loader">
+            <FadeLoader color="#7dba29" size="100"/>
         </div>
     );
 };

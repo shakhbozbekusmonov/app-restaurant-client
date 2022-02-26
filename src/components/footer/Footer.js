@@ -5,7 +5,7 @@ export const Footer = () => {
     return (
         <footer className="footer bg-light">
             <div className="container">
-                <div className="row align-items-center">
+                <div className="row justify-content-center justify-content-lg-start align-items-center">
                     <span className="footer__copyright">
                         Copyright &copy; {new Date().getFullYear()} ShahNur Software
                     </span>

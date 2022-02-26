@@ -5,12 +5,17 @@ import {Loader} from "../components/loader/Loader";
 
 export const Recipe = () => {
     const [recipe, setRecipe] = useState([]);
+    const [showRecipe, setShowRecipe] = useState(false);
     const {id} = useParams();
     const {goBack} = useHistory();
 
     useEffect(() => {
         getMealId(id).then(data => setRecipe(data.meals[0]))
     }, [])
+
+    const recipeShow = () => {
+        setShowRecipe(!showRecipe);
+    }
 
     return (
         <div className="container">
@@ -27,26 +32,29 @@ export const Recipe = () => {
                                 <h6><b>Category: </b>{recipe.strCategory}</h6>
                                 {recipe.strArea ? <h6><b>Area: </b>{recipe.strArea}</h6> : null}
                                 <p>{recipe.strInstructions}</p>
-                                <table className="table table-hover table-striped">
-                                    <thead>
-                                    <tr>
-                                        <th>Ingredient</th>
-                                        <th>Measure</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    {Object.keys(recipe).map(key => {
-                                        if (key.includes('Ingredient') && recipe[key]){
-                                            return (
-                                                <tr>
-                                                    <td>{recipe[key]}</td>
-                                                    <td>{recipe[`strMeasure${key.slice(13)}`]}</td>
-                                                </tr>
-                                            )
-                                        }
-                                    })}
-                                    </tbody>
-                                </table>
+                                <button type="button" className="btn btn-outline-primary rounded-0 my-3" onClick={recipeShow}>Show Recipe</button>
+                                {showRecipe ? (
+                                    <table className="table table-hover table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th>Ingredient</th>
+                                            <th>Measure</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {Object.keys(recipe).map(key => {
+                                            if (key.includes('Ingredient') && recipe[key]){
+                                                return (
+                                                    <tr>
+                                                        <td>{recipe[key]}</td>
+                                                        <td>{recipe[`strMeasure${key.slice(13)}`]}</td>
+                                                    </tr>
+                                                )
+                                            }
+                                        })}
+                                        </tbody>
+                                    </table>
+                                ) : null}
                                 {recipe.strYoutube ? (
                                     <div>
                                         <h5>Video Recipe</h5>
