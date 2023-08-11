@@ -7,7 +7,7 @@ export const MealItem = (props) => {
     return (
         <div className="col-12 col-md-6 col-lg-4 col-xl-4 mt-3">
             <div className="card h-100">
-                <img src={strMealThumb} alt={strMeal}/>
+                <img src={strMealThumb} width="338" height="338" alt={strMeal}/>
                 <div className="card-body align-items-baseline">
                     <h5 style={{height: "81px"}}>{strMeal}</h5>
                     <Link to={`/meals/${idMeal}`} className="btn btn-outline-success mt-3 rounded-0">
